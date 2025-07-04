@@ -3,7 +3,7 @@ import requests
 
 st.set_page_config(page_title="Gold Price Forecast", page_icon="💰")
 st.title("🔮 Gold Price Forecast (XAU/USD)")
-st.code("Streamlit version: July 4 Fix v1")
+st.code("✅ You are seeing the NEW version - 2025-07-04 6:55pm")
 def get_gold_price():
     url = "https://api.exchangerate.host/latest?base=USD&symbols=XAU"
     response = requests.get(url, timeout=10)
