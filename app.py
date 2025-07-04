@@ -6,12 +6,10 @@ st.title("🔮 Gold Price Forecast (XAU/USD)")
 
 # === Live gold price from Yahoo Finance ===
 def get_gold_price():
-    url = "https://query1.finance.yahoo.com/v8/finance/chart/XAUUSD=X"
+    url = "https://api.exchangerate.host/latest?base=XAU&symbols=USD"
     response = requests.get(url)
     data = response.json()
-    current_price = data['chart']['result'][0]['meta']['regularMarketPrice']
-    return current_price
-
+    return data['rates']['USD']
 # Display live price
 try:
     gold_price = get_gold_price()
