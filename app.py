@@ -11,16 +11,19 @@ def get_gold_price():
         "User-Agent": "Mozilla/5.0"
     }
     response = requests.get(url, headers=headers, timeout=10)
-    if response.status_code != 200:
-        raise Exception(f"API request failed: {response.status_code}")
+    
+    # Show full raw output
+    st.write("Raw API response:", response.text)
     
     data = response.json()
+    
     if 'rates' not in data or 'XAU' not in data['rates']:
         raise Exception("Invalid API response structure.")
     
     xau_per_usd = data['rates']['XAU']
     usd_per_xau = 1 / xau_per_usd
     return usd_per_xau
+
 
 # === Display price ===
 try:
