@@ -7,16 +7,12 @@ st.title("🔮 Gold Price Forecast (XAU/USD)")
 # === Fetch gold price using ExchangeRate.host ===
 def get_gold_price():
     url = "https://api.exchangerate.host/latest?base=USD&symbols=XAU"
-    headers = {
-        "User-Agent": "Mozilla/5.0"
-    }
-    response = requests.get(url, headers=headers, timeout=10)
+    response = requests.get(url, timeout=10)
     
-    # Show full raw output
-    st.write("Raw API response:", response.text)
-    
+    st.write("Raw API response:", response.text)  # Optional: helpful for debugging
+
     data = response.json()
-    
+
     if 'rates' not in data or 'XAU' not in data['rates']:
         raise Exception("Invalid API response structure.")
     
