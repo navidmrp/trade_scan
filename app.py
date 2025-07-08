@@ -31,4 +31,23 @@ def get_gold_price_history():
 
 # Display current price
 try:
-    gold_price = g_
+    gold_price = get_gold_price()
+    st.metric(label="🪙 Live Gold Price (USD/oz)", value=f"${gold_price:.2f}")
+except Exception as e:
+    st.error("Could not fetch gold price.")
+    st.code(str(e))
+
+st.divider()
+
+# Display historical chart
+st.subheader("📉 Gold Price (Last 30 Days)")
+try:
+    df = get_gold_price_history()
+    st.line_chart(data=df.set_index("date")["price"])
+except Exception as e:
+    st.error("Could not load price chart.")
+    st.code(str(e))
+
+st.divider()
+st.subheader("📊 Coming Next: Predict Probabilities Based on SL/TP")
+st.caption("We’ll soon let you enter Stop Loss / Take Profit levels to calculate win rates.")
