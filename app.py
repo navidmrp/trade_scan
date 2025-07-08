@@ -19,7 +19,7 @@ def get_gold_price():
 
 # Fetch historical gold prices (30 days)
 def get_gold_price_history():
-    url = "https://api.coingecko.com/api/v3/coins/tether-gold/market_chart?vs_currency=usd&days=30"
+    url = "https://api.coingecko.com/api/v3/coins/tether-gold/market_chart?vs_currency=usd&days=365"
     response = requests.get(url)
     data = response.json()
 
@@ -40,7 +40,7 @@ except Exception as e:
 st.divider()
 
 # Display historical chart
-st.subheader("📉 Gold Price (Last 30 Days)")
+st.subheader("📉 Gold Price (Last 365 Days)")
 try:
     df = get_gold_price_history()
     st.line_chart(data=df.set_index("date")["price"])
